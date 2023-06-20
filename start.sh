@@ -16,6 +16,7 @@ for i in "${files[@]}"
   do
     if [ ! -f /opt/scripts/$i ]; then
       cp /go/src/github.com/bnhf/$i /opt/scripts \
+      && chmod +x /opt/scripts/$i \
       && echo "No existing $i found"
     else
       echo "Existing $i found, and will be used"

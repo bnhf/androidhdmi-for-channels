@@ -4,13 +4,13 @@ RUN apt update && apt install -y git adb
 RUN mkdir -p /go/src/github.com/bnhf
 WORKDIR /go/src/github.com/bnhf
 RUN git clone https://github.com/bnhf/androidhdmi-for-channels .
-RUN go build -o androidhdmi-for-channels1
+RUN go build -o /opt/androidhdmi-for-channels1
 RUN sed -i "s|//2||g" main.go \
-    && go build -o androidhdmi-for-channels2
+    && go build -o /opt/androidhdmi-for-channels2
 RUN sed -i "s|//3||g" main.go \
-    && go build -o androidhdmi-for-channels3
+    && go build -o /opt/androidhdmi-for-channels3
 RUN sed -i "s|//4||g" main.go \
-    && go build -o androidhdmi-for-channels4
+    && go build -o /opt/androidhdmi-for-channels4
 COPY start.sh /opt
 EXPOSE 7654
 CMD /opt/start.sh
