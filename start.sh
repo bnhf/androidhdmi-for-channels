@@ -10,7 +10,7 @@ for i in "${streamers[@]}"
     adb connect $i
   done
 
-files= ( prebmitune1.sh bmitune1.sh stopbmitune1.sh prebmitune2.sh bmitune2.sh stopbmitune2.sh prebmitune3.sh bmitune3.sh stopbmitune3.sh prebmitune4.sh bmitune4.sh stopbmitune4.sh )
+files=( prebmitune1.sh bmitune1.sh stopbmitune1.sh prebmitune2.sh bmitune2.sh stopbmitune2.sh prebmitune3.sh bmitune3.sh stopbmitune3.sh prebmitune4.sh bmitune4.sh stopbmitune4.sh )
 
 for i in "${files[@]}"
   do
