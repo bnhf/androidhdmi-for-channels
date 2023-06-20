@@ -20,17 +20,29 @@ var (
 
 	tuners = []tuner{
 		{
-			url:   "http://192.168.1.168/0.ts",
+			url:   os.Getenv("TUNER_URL"),
 			pre:   "/opt/opendct/prebmitune.sh",
 			start: "/opt/opendct/bmitune.sh",
 			stop:  "/opt/opendct/stopbmitune.sh",
 		},
-		{
-			url:   "http://192.168.1.169/main",
-			pre:   "/opt/opendct/prebmituneb.sh",
-			start: "/opt/opendct/bmituneb.sh",
-			stop:  "/opt/opendct/stopbmituneb.sh",
-		},
+//2		{
+//2			url:   os.Getenv("TUNER2_URL"),
+//2			pre:   "/opt/opendct/prebmitune2.sh",
+//2			start: "/opt/opendct/bmitune2.sh",
+//2			stop:  "/opt/opendct/stopbmitune2.sh",
+//2		},
+//3		{
+//3			url:   os.Getenv("TUNER3_URL"),
+//3			pre:   "/opt/opendct/prebmitune3.sh",
+//3			start: "/opt/opendct/bmitune3.sh",
+//3			stop:  "/opt/opendct/stopbmitune3.sh",
+//3		},
+//4		{
+//4			url:   os.Getenv("TUNER4_URL"),
+//4			pre:   "/opt/opendct/prebmitune4.sh",
+//4			start: "/opt/opendct/bmitune4.sh",
+//4			stop:  "/opt/opendct/stopbmitune4.sh",
+//4		},
 	}
 )
 
