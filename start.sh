@@ -2,7 +2,7 @@
 
 adb start-server
 
-streamers=( $STREAMER1_IP $STREAMER2_IP $STREAMER3_IP $STREAMER4_IP )
+streamers=( $STREAMER1_HOST $STREAMER2_HOST $STREAMER3_HOST $STREAMER4_HOST )
 
 for i in "${streamers[@]}"
   do

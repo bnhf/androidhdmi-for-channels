@@ -12,7 +12,7 @@ RUN sed -i "s|//3||g" main.go \
 RUN sed -i "s|//4||g" main.go \
     && go build -o /opt/androidhdmi-for-channels4
 
-From debian:latest
+FROM debian:latest
 RUN apt update && apt install -y adb
 RUN mkdir -p /opt/scripts
 WORKDIR /opt/scripts
