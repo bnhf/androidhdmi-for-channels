@@ -8,22 +8,22 @@ SEARCH2="input keyevent 66"
 
 #USA
 if [ $1 = "111" ];then
-adb shell $HOME
-adb shell $PRIME1
-adb shell $PRIME2
-#adb shell $PRIME3 
-adb shell input text "stream\ usa\ channel\ on\ YouTube\ TV"
-adb shell $SEARCH1
-adb shell $SEARCH2
+adb -s $2 shell $HOME
+adb -s $2 shell $PRIME1
+adb -s $2 shell $PRIME2
+#adb -s $2 shell $PRIME3 
+adb -s $2 shell input text "stream\ usa\ channel\ on\ YouTube\ TV"
+adb -s $2 shell $SEARCH1
+adb -s $2 shell $SEARCH2
 fi
 
 #SYFY
 if [ $1 = "135" ];then
-adb shell $HOME
-adb shell $PRIME1
-adb shell $PRIME2
-#adb shell $PRIME3 
-adb shell input text "stream\ syfy\ on\ YouTube\ TV"
-adb shell $SEARCH1
-adb shell $SEARCH2
+adb -s $2 shell $HOME
+adb -s $2 shell $PRIME1
+adb -s $2 shell $PRIME2
+#adb -s $2 shell $PRIME3 
+adb -s $2 shell input text "stream\ syfy\ on\ YouTube\ TV"
+adb -s $2 shell $SEARCH1
+adb -s $2 shell $SEARCH2
 fi

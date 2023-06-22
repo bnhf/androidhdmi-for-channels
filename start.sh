@@ -3,20 +3,22 @@
 adb start-server
 adb devices
 
-streamers=( $ADB_DEVICES )
+streamers=( $STREAMER1_IP $STREAMER2_IP $STREAMER3_IP $STREAMER4_IP )
 
 for i in "${streamers[@]}"
   do
-    adb connect $i
+    if [ ! -z $i ]; then
+      adb connect $i
+    fi
   done
 
-files=( prebmitune1.sh bmitune1.sh stopbmitune1.sh prebmitune2.sh bmitune2.sh stopbmitune2.sh prebmitune3.sh bmitune3.sh stopbmitune3.sh prebmitune4.sh bmitune4.sh stopbmitune4.sh )
+files=( prebmitune.sh bmitune.sh stopbmitune.sh )
 
 for i in "${files[@]}"
   do
-    if [ ! -f /opt/scripts/$i ]; then
-      cp /go/src/github.com/bnhf/$i /opt/scripts \
-      && chmod +x /opt/scripts/$i \
+    if [ ! -f /opt/scripts/sample/yttv/$i ]; then
+      cp /go/src/github.com/bnhf/$i /opt/scripts/sample/yttv \
+      && chmod +x /opt/scripts/sample/yttv/$i \
       && echo "No existing $i found"
     else
       echo "Existing $i found, and will be used"

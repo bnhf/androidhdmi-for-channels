@@ -20,36 +20,40 @@ var (
 
 	tuners = []tuner{
 		{
-			url:   os.Getenv("TUNER1_URL"),
-			pre:   "/opt/scripts/prebmitune1.sh",
-			start: "/opt/scripts/bmitune1.sh",
-			stop:  "/opt/scripts/stopbmitune1.sh",
+			url:        os.Getenv("TUNER1_URL"),
+			pre:        "/opt/scripts/" + os.Getenv("STREAMER_APP") + "/prebmitune.sh",
+			start:      "/opt/scripts/" + os.Getenv("STREAMER_APP") + "/bmitune.sh",
+			stop:       "/opt/scripts/" + os.Getenv("STREAMER_APP") + "/stopbmitune.sh",
+			streamerip: os.Getenv("STREAMER1_IP"),
 		},
 		//2{
-		//2	url:   os.Getenv("TUNER2_URL"),
-		//2	pre:   "/opt/scripts/prebmitune2.sh",
-		//2	start: "/opt/scripts/bmitune2.sh",
-		//2	stop:  "/opt/scripts/stopbmitune2.sh",
+		//2 url:        os.Getenv("TUNER2_URL"),
+		//2	pre:        "/opt/scripts/" + os.Getenv("STREAMER_APP") + "/prebmitune.sh",
+		//2	start:      "/opt/scripts/" + os.Getenv("STREAMER_APP") + "/bmitune.sh",
+		//2	stop:       "/opt/scripts/" + os.Getenv("STREAMER_APP") + "/stopbmitune.sh",
+		//2	streamerip: os.Getenv("STREAMER2_IP"),
 		//2},
 		//3{
-		//3	url:   os.Getenv("TUNER3_URL"),
-		//3	pre:   "/opt/scripts/prebmitune3.sh",
-		//3	start: "/opt/scripts/bmitune3.sh",
-		//3	stop:  "/opt/scripts/stopbmitune3.sh",
+		//3	url:        os.Getenv("TUNER3_URL"),
+		//3	pre:        "/opt/scripts/" + os.Getenv("STREAMER_APP") + "/prebmitune.sh",
+		//3	start:      "/opt/scripts/" + os.Getenv("STREAMER_APP") + "/bmitune.sh",
+		//3	stop:       "/opt/scripts/" + os.Getenv("STREAMER_APP") + "/stopbmitune.sh",
+		//3	streamerip: os.Getenv("STREAMER3_IP"),
 		//3},
 		//4{
-		//4	url:   os.Getenv("TUNER4_URL"),
-		//4	pre:   "/opt/scripts/prebmitune4.sh",
-		//4	start: "/opt/scripts/bmitune4.sh",
-		//4	stop:  "/opt/scripts/stopbmitune4.sh",
+		//4	url:        os.Getenv("TUNER4_URL"),
+		//4	pre:        "/opt/scripts/" + os.Getenv("STREAMER_APP") + "/prebmitune.sh",
+		//4	start:      "/opt/scripts/" + os.Getenv("STREAMER_APP") + "/bmitune.sh",
+		//4	stop:       "/opt/scripts/" + os.Getenv("STREAMER_APP") + "/stopbmitune.sh",
+		//4	streamerip: os.Getenv("STREAMER4_IP"),
 		//4},
 	}
 )
 
 type tuner struct {
-	url              string
-	pre, start, stop string
-	active           bool
+	url                          string
+	pre, start, stop, streamerip string
+	active                       bool
 }
 
 type reader struct {
@@ -72,11 +76,11 @@ func (r *reader) Read(p []byte) (int, error) {
 	if !r.started {
 		r.started = true
 		go func() {
-			if err := execute(r.t.pre); err != nil {
+			if err := execute(r.t.pre, r.t.streamerip); err != nil {
 				log.Printf("[ERR] Failed to run pre script: %v", err)
 				return
 			}
-			if err := execute(r.t.start, r.channel); err != nil {
+			if err := execute(r.t.start, r.channel, r.t.streamerip); err != nil {
 				log.Printf("[ERR] Failed to run start script: %v", err)
 				return
 			}
@@ -86,7 +90,7 @@ func (r *reader) Read(p []byte) (int, error) {
 }
 
 func (r *reader) Close() error {
-	if err := execute(r.t.stop); err != nil {
+	if err := execute(r.t.stop, r.t.streamerip); err != nil {
 		log.Printf("[ERR] Failed to run stop script: %v", err)
 	}
 	tunerLock.Lock()
