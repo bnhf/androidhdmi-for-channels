@@ -1,7 +1,5 @@
 #!/bin/bash
 
-cd /opt/scripts/
-
 adb start-server
 
 streamers=( $STREAMER1_IP $STREAMER2_IP $STREAMER3_IP $STREAMER4_IP )
