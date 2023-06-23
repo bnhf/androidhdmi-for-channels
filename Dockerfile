@@ -3,7 +3,7 @@ FROM golang:bullseye AS builder
 RUN apt update && apt install -y git
 RUN mkdir -p /go/src/github.com/bnhf
 WORKDIR /go/src/github.com/bnhf
-RUN git clone https://github.com/bnhf/androidhdmi-for-channels/tree/alpha .
+RUN git clone -b alpha https://github.com/bnhf/androidhdmi-for-channels .
 RUN go build -o /opt/androidhdmi-for-channels
 #RUN sed -i "s|//2||g" main.go \
 #    && go build -o /opt/androidhdmi-for-channels2
