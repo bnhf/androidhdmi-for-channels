@@ -1,15 +1,15 @@
 #!/bin/bash
 
-adb start-server
+#adb start-server
 
-streamers=( $STREAMER1_HOST $STREAMER2_HOST $STREAMER3_HOST $STREAMER4_HOST )
+#streamers=( $STREAMER1_HOST $STREAMER2_HOST $STREAMER3_HOST $STREAMER4_HOST )
 
-for i in "${streamers[@]}"
-  do
-    if [ ! -z $i ]; then
-      adb connect $i
-    fi
-  done
+#for i in "${streamers[@]}"
+#  do
+#    if [ ! -z $i ]; then
+#      adb connect $i
+#    fi
+#  done
 
 adb devices
 
@@ -28,4 +28,5 @@ for i in "${files[@]}"
   fi
 done
 
-../androidhdmi-for-channels$TUNERS
+#../androidhdmi-for-channels$TUNERS
+../androidhdmi-for-channels
